@@ -57,6 +57,6 @@ def listFeedback():
     f = open("templates/partials/success_feedback.html", "w")
     for row in data:
         f.write("<p>\n")
-        f.write(f"{row[1]}\n")
+        f.write(f"{escape(row[1])}\n")  # Use escape() to neutralise scripts
         f.write("</p>\n")
     f.close()
