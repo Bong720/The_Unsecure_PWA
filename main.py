@@ -1,3 +1,5 @@
+from flask_wtf.csrf import CSRFProtect
+import os  # Useful for generating a secret key
 from flask import Flask
 from flask import render_template
 from flask import request
@@ -9,8 +11,9 @@ import user_management as dbHandler
 # app.logger.critical("message")
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "use-a-long-random-string-here"
+csrf = CSRFProtect(app)
 # Enable CORS to allow cross-origin requests (needed for CSRF demo in Codespaces)
-CORS(app)
 
 
 @app.route("/success.html", methods=["POST", "GET", "PUT", "PATCH", "DELETE"])
